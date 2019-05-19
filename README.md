@@ -2,6 +2,10 @@
 
 Make simple http/https requests.
 
+## Example
+
+GET request to SWAPI (The Star Wars API):
+
 ```javascript
 const femto = require('femto-http-request')
 
@@ -18,8 +22,10 @@ requestStatus.catch(err => {
 })
 ```
 
+Results:
+
 ```json
-{
+response: {
   "status": 200,
   "headers": {
     "date": "Sun,\n    19 May 2019 20: 58: 59 GMT",

@@ -12,7 +12,9 @@
   },
   "keywords": [
     "http",
-    "request"
+    "https",
+    "request",
+    "promise"
   ],
   "author": "Heber Quequejana <heberqc@gmail.com>",
   "license": "ISC",
