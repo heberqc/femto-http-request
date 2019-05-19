@@ -1,0 +1,23 @@
+{
+  "name": "femto-http-request",
+  "version": "1.0.0",
+  "description": "Do simple http-requests",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/heberqc/femto-http-request.git"
+  },
+  "keywords": [
+    "http",
+    "request"
+  ],
+  "author": "Heber Quequejana <heberqc@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/heberqc/femto-http-request/issues"
+  },
+  "homepage": "https://github.com/heberqc/femto-http-request#readme"
+}
