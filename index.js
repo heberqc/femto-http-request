@@ -1,7 +1,7 @@
 const http = require('http')
 const https = require('https')
 
-exports.request = (method, url, body, headers) => new Promise((resolve, reject) => {
+exports.request = (method, url, body = '', headers) => new Promise((resolve, reject) => {
 
   // validate the method
   const validMethods = ['GET', 'POST', 'PUT', 'DELETE']
@@ -44,23 +44,23 @@ exports.request = (method, url, body, headers) => new Promise((resolve, reject) 
   }
 
   const responseCallback = (response) => {
-    let body = ''
+    let bodyString = ''
     response.setEncoding('utf8')
     response.on('data', (chunk) => {
-      body += chunk
+      bodyString += chunk
     })
     response.on('end', () => {
       resolve({
         status: response.statusCode,
         headers: response.headers,
-        data: JSON.parse(body),
+        data: JSON.parse(bodyString),
       })
     })
   }
 
   // do the request
   const request = agent.request(options, responseCallback)
-  request.write(body || '', 'utf8')
+  request.write(typeof(body) === 'string' ? body : JSON.stringify(body), 'utf8')
   request.on('error', (error) => {
     reject(error)
   })
