@@ -1,18 +1,12 @@
 const http = require('http')
 const https = require('https')
 
-exports.request = (method, url, body, headers) => new Promise((resolve) => {
+exports.request = (method, url, body, headers) => new Promise((resolve, reject) => {
 
   // validate the method
   const validMethods = ['GET', 'POST', 'PUT', 'DELETE']
   if (!validMethods.includes(method.toUpperCase())) {
-    resolve({
-      headers: {
-        'Content-Type': 'application/json;charset=UTF-8',
-      },
-      status: 500,
-      data: { message: 'The method is not valid.' },
-    })
+    reject('The method is not valid.')
   }
 
   // protocol and port parameters
@@ -24,13 +18,7 @@ exports.request = (method, url, body, headers) => new Promise((resolve) => {
     protocol = 'https://'
     port = '443'
   } else if (!url.includes(protocol)) {
-    resolve({
-      headers: {
-        'Content-Type': 'application/json;charset=UTF-8',
-      },
-      status: 500,
-      data: { message: 'The url must starts with `http://` or `https://`.' },
-    })
+    reject('The url must starts with `http://` or `https://`.')
   }
 
   // host, path and maybe port parameters
@@ -74,13 +62,7 @@ exports.request = (method, url, body, headers) => new Promise((resolve) => {
   const request = agent.request(options, responseCallback)
   request.write(body || '', 'utf8')
   request.on('error', (error) => {
-    resolve({
-      headers: {
-        'Content-Type': 'application/json;charset=UTF-8',
-      },
-      status: 500,
-      data: { message: `Error: ${error}` },
-    })
+    reject(error)
   })
   request.end()
 })

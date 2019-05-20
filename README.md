@@ -1,8 +1,17 @@
 # femto-http-request
 
-Make simple http/https requests.
+Make simple http/https requests (GET, POST, PUT and DELETE).
 
-## Example
+```javascript
+femto.request(
+  method,   // string e.g. GET, POST, PUT, DELETE
+  url,      // string e.g. https://somehost.com:5863/api/people/1/
+  body,     // object
+  headers,  // object
+) // promise
+```
+
+## GET example
 
 GET request to SWAPI (The Star Wars API):
 
@@ -12,14 +21,11 @@ const femto = require('femto-http-request')
 const requestStatus = femto.request(
   'GET',
   'https://swapi.co/api/people/1/'
-)
-requestStatus.then(response => {
+).then(response => {
   console.log('response:', response)
-})
-
-requestStatus.catch(err => {
-  console.log('err:', err)
-})
+}).catch(error => {
+  console.log('error:', error)
+});
 ```
 
 Results:
@@ -77,4 +83,23 @@ response: {
     "url": "https: //swapi.co/api/people/1/"
   }
 }
+```
+
+## PUT example
+
+
+```javascript
+const changePasswordRequest = femto.request(
+  'PUT',                                              // method
+  someUrl,                                            // url
+  { newPassword },                                    // body
+  {                                                   // header
+    'Content-Type': 'application/json;charset=UTF-8', //
+    'token': token,                                   //
+  }                                                   //
+).then(response => {
+  console.log('response:', response)
+}).catch(error => {
+  console.log('error:', error)
+});
 ```
