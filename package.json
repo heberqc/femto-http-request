@@ -1,6 +1,6 @@
 {
   "name": "femto-http-request",
-  "version": "1.0.3",
+  "version": "1.0.6",
   "description": "Do simple http-requests",
   "main": "index.js",
   "scripts": {
